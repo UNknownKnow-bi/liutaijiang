@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刘泰江</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+        .container {
+            background-image: url("背景图.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-left, .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 15px;
+            margin: 0 5px;
+            border-radius: 15px;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        .self-page {
+            background-color: #4CAF50;
+            color: rgb(214, 213, 213) !important;
+        }
+        .icon {
+            color: rgb(32, 31, 31);
+            font-size: 20px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .content {
+            display: flex;
+            flex: 1;
+        }
+        .sidebar {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 200px;
+            padding: 20px;
+            color: white;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+        }
+        .sidebar a.active {
+            background-color: #ff6600;
+        }
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .page-content {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 0px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+            overflow-y: auto;
+        }
+        .page-content h1 {
+            margin-top: 30px;
+            padding: 10px;
+            color: #333;
+            text-align: center
+        }
+        .page-content p {
+            color: #f8f8f8;
+        }
+        .rotating-cards {
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        .card-logo {
+            width: 300px;
+            height: 400px;
+        }
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .card-image {
+            width: 300px;
+            height: 400px;
+            object-fit: fill;
+            border-radius: 5px;
+        }
+        .card-footer {
+            font-size: 20px;
+            text-align: center;
+    
+        }
+        .rotating-cards-container {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 20px;
+            overflow: hidden;
+            line-height: 1.5;
+        }
+        .rotating-cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.5s ease;
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 80%;
+            height: 50px;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        .card-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+            color: #fdfdfd;
+        }
+        .rotate-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #862424;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .rotate-left {
+            left: 0px;
+        }
+        .rotate-right {
+            right: 0px;
+        }
+        .side-card {
+            opacity: 0.3;
+            transform: scale(0.8);
+        }
+        .card {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            background-color: transparent;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            background-color: #4d4b4b;
+            color: #634343;
+        }
+        .card-logo {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .project-container {
+            width: 100%;
+            max-height: calc(100vh - 100px);
+        }
+
+        .project-section {
+            display: flex;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .project-image {
+            flex: 0 0 30%;
+            padding-right: 20px;
+            margin-left: 200px; /* Offset the negative margin */
+        }
+
+        .project-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .project-text {
+            flex: 0 0 70%;
+        }
+
+        .project-text h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .project-text p {
+            color: #666;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a href="#主页简介">主页简介</a>
+                <a href="#项目经历">项目经历</a>
+                <a href="#游戏拆解">游戏拆解</a>
+                <a href="#业余爱好">业余爱好</a>
+            </div>
+            <div class="navbar-right">
+                <a href="#" class="self-page">简历</a>
+                <span class="icon">&#9881;</span>
+                <span class="icon">&#128100;</span>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="sidebar">
+                <a href="#项目经历">项目经历</a>
+                <a href="#游戏拆解">游戏拆解</a>
+                <a href="#业余爱好">业余爱好</a>
+            </div>
+            <div class="main" id="main-content">
+                <!-- Content will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pages = {
+            主页简介: `
+                <h1 class = "Mainh1">About Me</h1>
+               <div class="rotating-cards-container">
+                    <button class="rotate-btn rotate-left" onclick="rotateCards('left')">&lt;</button>
+                    <div class="rotating-cards">
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="converted_image.png" alt="Front Image" class="card-logo">
+                                    <div class="card-content">
+                                        <div class="card-title">ISTP</div>
+                                        <div class="card-footer"> Introverted  </br> Observant </br> Thinking </br> Prospecting</div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <img src="微信图片_20240730123147.png" alt="Back Image" class="card-logo">
+                                    <div class="card-content">
+                                        <div class="card-title"></div>
+                                        <div class="card-footer"> AI之友 </br>  弱点击破 </br>  静心执行 </br> 话不多人不狠 </br> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="游戏库.png" alt="Front Image" class="card-logo">
+                                    <div class="card-content">
+                                        <div class="card-title">游戏宅</div>
+                                        <div class="card-footer">开放世界 </br> 沉浸剧情 </br> 数值养成 </br> 恐怖解谜</div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <img src="游戏成就.png" alt="Back Image" class="card-logo">
+                                    <div class="card-content">
+                                        <div class="card-title"> 记得睡觉 </div>
+                                        <div class="card-footer"> 书籍收集狂 </br> 细节检测家 </br> 解包初学者 </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="场景1.png" alt="Front Image" class="card-logo">
+                                    <div class="card-content">
+                                        <div class="card-title">成分复杂</div>
+                                        <div class="card-footer">Thinking & Prospecting</div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <img src="场景1.png" alt="Back Image" class="card-logo">
+                                    <div class="card-content">
+                                        <div class="card-title">性格特征</div>
+                                        <div class="card-footer">发挥潜能</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="rotate-btn rotate-right" onclick="rotateCards('right')">&gt;</button>
+                </div>
+            `,
+            
+            项目经历: `
+                <h1>项目经历</h1>
+                <div class="project-container">
+                    <div class="project-section">
+                        <div class="project-image">
+                            <img src="project1.jpg" alt="项目1图片">
+                        </div>
+                        <div class="project-text">
+                            <h2>项目1: 《代号：DQ》</h2>
+                            <p>开发时间: 2022年1月 - 2022年6月</p>
+                            <p>项目描述: 设计并实现了一个智能家居控制系统，集成了温度调节、照明控制和安全监控等功能。</p>
+                            <p>技术栈: React, Node.js, MongoDB, MQTT</p>
+                            <p>成果: 系统成功部署在100+家庭，用户满意度达95%</p>
+                        </div>
+                    </div>
+                    <div class="project-section">
+                        <div class="project-image">
+                            <img src="project2.jpg" alt="项目2图片">
+                        </div>
+                        <div class="project-text">
+                            <h2>项目2: 移动健康应用</h2>
+                            <p>开发时间: 2021年7月 - 2021年12月</p>
+                            <p>项目描述: 开发了一款移动健康应用，帮助用户跟踪日常运动和饮食习惯。</p>
+                            <p>技术栈: Flutter, Firebase, Google Fit API</p>
+                            <p>成果: 应用在App Store和Google Play上线，下载量超过50万</p>
+                        </div>
+                    </div>
+                    <div class="project-section">
+                        <div class="project-image">
+                            <img src="project3.jpg" alt="项目3图片">
+                        </div>
+                        <div class="project-text">
+                            <h2>项目3: 企业资源管理系统</h2>
+                            <p>开发时间: 2020年9月 - 2021年3月</p>
+                            <p>项目描述: 为中型制造企业开发了一套定制的ERP系统，整合了库存管理、生产计划和财务报告等模块。</p>
+                            <p>技术栈: Java Spring Boot, Angular, PostgreSQL</p>
+                            <p>成果: 系统上线后，客户的运营效率提升了30%，库存成本降低15%</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            游戏拆解: `
+                <h1>游戏拆解</h1>
+                <p>在这里，我们深入分析各种游戏的机制和设计。</p>
+            `,
+            业余爱好: `
+                <h1>业余爱好</h1>
+                <p>工作之余，我们还有许多有趣的爱好和活动。</p>
+            `
+        };
+
+        
+        
+
+        
+        function loadPage(pageId) {
+            const decodedPageId = decodeURIComponent(pageId);
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `<div class="page-content">${pages[decodedPageId] || '页面不存在'}</div>`;
+            
+            // Update active class in sidebar
+            document.querySelectorAll('.sidebar a').forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeLink = document.querySelector(`.sidebar a[href="#${pageId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // 如果是主页简介，初始化卡片
+            if (pageId === '主页简介') {
+                initializeCards();
+            }
+        }
+
+        let currentIndex = 1;
+        let cardContents = [];
+
+        function rotateCards(direction) {
+            const totalCards = cardContents.length;
+            if (direction === 'left') {
+                currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+            } else {
+                currentIndex = (currentIndex + 1) % totalCards;
+            }
+            updateCards();
+        }
+
+        function updateCards() {
+            const cards = document.querySelector('.rotating-cards');
+            if (!cards) return;
+
+            const totalCards = cardContents.length;
+            
+            const cardIndices = Array.from({length: totalCards * 3}, (_, i) => i % totalCards);
+            const visibleCards = cardIndices.slice(currentIndex, currentIndex + 3);
+            
+            cards.innerHTML = '';
+            visibleCards.forEach((index, position) => {
+                const card = document.createElement('div');
+                card.className = `card ${position === 1 ? '' : 'side-card'}`;
+                card.innerHTML = cardContents[index];
+                cards.appendChild(card);
+            });
+        }
+
+        function initializeCards() {
+            const cards = document.querySelector('.rotating-cards');
+            if (cards) {
+                cardContents = Array.from(cards.children).map(card => card.outerHTML);
+                updateCards();
+            }
+        }
+
+        // 初始加载
+        function initialLoad() {
+            const pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
+            loadPage(pageId);
+        }
+
+        // 处理导航
+        window.addEventListener('hashchange', () => {
+            const pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
+            loadPage(pageId);
+        });
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', initialLoad);
+    </script>
+</body>
+</html>
