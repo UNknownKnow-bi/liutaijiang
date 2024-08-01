@@ -261,9 +261,7 @@
         background-color: rgba(190, 190, 190, 0.2);
         padding: 20px; /* 添加内边距 */
         border-radius: 10px; /* 添加圆角 */
-    }
-
-
+        }
         .project-text h2 {
             margin-top: 0;
             font-size: 20pt;
@@ -277,12 +275,13 @@
             line-height: 2;
         }
 
+        .project-text a{
+            font-weight: bold;
+        }
         #main-content {
             overflow-y: auto;
             max-height: calc(100vh - 60px);
         }
-
-
         .game-analysis {
             width: 100%;
             max-width: 1200px;
@@ -335,22 +334,210 @@
         }
 
         .play-button {
-            position: absolute;
-            top: 50%;
+            position: relative;
+            top: 5%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
+            font-weight: bold;
+            background-color: rgba(209, 207, 207, 0.5);
+            color: rgb(216, 27, 27);
             border: none;
-            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            display: block;
+        }
+
+        .game-image-container:hover  {
+            display: block;
+        }
+
+        .hobby-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hobby-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .hobby-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .hobby-images {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+        }
+
+        .hobby-image-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .hobby-image-container {
+            width: 48%;
+        }
+
+        .hobby-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .hobby-image-description {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .hobby-text {
+            width: 35%;
+            font-size: 17px;
+            line-height: 1.6;
+            vertical-align: auto;
+            
+        }
+        .hobby-text a{
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .navbar-left, .navbar-right {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar a {
+            margin: 5px 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .content {
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 100%;
+            padding: 10px;
             display: none;
         }
 
-        .game-image-container:hover .play-button {
+        .main {
+            padding: 10px;
+        }
+
+        .rotating-cards-container {
+            margin: 30px auto;
+        }
+
+        .rotating-cards {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .rotate-btn {
+            display: none;
+        }
+
+        .project-container {
+            width: 90%;
+        }
+
+        .project-section {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .project-image {
+            align-self: left;
+            margin-bottom: 10px;
+        }
+
+        .project-text {
+            width: 100%;
+        }
+        .project-text p{
+            width: 100%;
+            font-size:medium;
+        }
+        .game-analysis-content {
+            flex-direction: column;
+        }
+
+        .game-image-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .hobby-content {
+            flex-direction: column;
+        }
+
+        .hobby-images, .hobby-text {
+            width: 100%;
+        }
+        .game-analysis {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .game-analysis-content {
+            flex-direction: column;
+        }
+
+        .game-image-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .game-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .image-hover-text {
+            position: static;
+            display: block;
+            background-color: rgba(185, 185, 185, 0.3);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .game-image-container:hover .image-hover-text {
             display: block;
         }
+        
+        .hobby-text {
+            width: 100%;
+            font-size: 17px;
+            line-height: 1.6;
+            background-color: rgba(211, 211, 211, 0.2);
+            border-radius: 0 0 5px 5px;
+            text-indent: 2em;
+        }
+        .icon {
+            display: none;
+        }
+    }
     </style>
 </head>
 <body>
@@ -363,7 +550,7 @@
                 <a href="#业余爱好">业余爱好</a>
             </div>
             <div class="navbar-right">
-                <a href="#" class="self-page">简历</a>
+                <a href="刘泰江_7月.pdf" class="self-page">简历</a>
                 <span class="icon">&#9881;</span>
                 <span class="icon">&#128100;</span>
             </div>
@@ -429,7 +616,7 @@
                                     <img src="问号.gif" alt="Front Image" class="card-logo">
                                     <div class="card-content">
                                         <div class="card-title">成分复杂</div>
-                                        <div class="card-footer"> 数据分析 </br> 游戏UGC小博主 </br> AI外置脑  </br> MOD新手创作者 </div>
+                                        <div class="card-footer"> 数据分析 </br> AI外置脑  </br> MOD新手创作者 </br> 游戏UGC无人问津博主 </div>
                                     </div>
                                 </div>
                                 <div class="card-back">
@@ -445,7 +632,6 @@
                     <button class="rotate-btn rotate-right" onclick="rotateCards('right')">&gt;</button>
                 </div>
             `,
-            
             项目经历: `
                 <h1>项目经历</h1>
                 <div class="project-container">
@@ -457,11 +643,11 @@
                         </div>
                         <div class="project-text">
                              <h2>系列项目一: 《代号：HLL》</h2>
-                            <p>测试时间: 2024年7月 - 2024年8月</p>
-                            <p>项目类型: 小游戏</p>
-                            <p>项目描述: 大地图探索 + 卡牌养成 + 重度商业系统</p>
-                            <p>主要工作: 完整负责三款同题材类型在国服的CA1和CB1测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，重点评估市场可行性和各系统可玩性 </br> 3、对游戏进程前期关键行为指标进行分析，用数据支撑游戏核心层调优 </p> 
-                            <p>涉及技能: SQL、Python、EXCEL</p>
+                            <p><a>测试时间:</a> 2024年7月 - 2024年8月</p>
+                            <p><a>项目类型:</a> 小游戏</p>
+                            <p><a>项目描述:</a> 大地图探索 + 卡牌养成 + 重度商业系统</p>
+                            <p><a>主要工作:</a> 完整负责三款同题材类型在国服的CA1和CB1测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，重点评估市场可行性和各系统可玩性 </br> 3、对游戏进程前期关键行为指标进行分析，用数据支撑游戏核心层调优 </p> 
+                            <p><a>涉及技能:</a> SQL、Python、EXCEL</p>
                         </div>
                     </div>
                     <div class="project-section">
@@ -471,11 +657,11 @@
                         </div>
                         <div class="project-text">
                            <h2>系列项目二: 《代号：TowerDefence》</h2>
-                            <p>测试时间: 2024年4月 - 2024年7月</p>
-                            <p>项目类型: 小游戏</p>
-                            <p>项目描述: 肉鸽 + 定点塔防 + 卡牌养成 + 中度商业系统</p>
-                            <p>主要工作: 完整负责两款同题材类型在国服的CB3测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，重点评估市场盈利表现 </br> 3、对游戏中长期玩家目标相关的系统进行复盘和分析，提供数据支持； </p> 
-                            <p>涉及技能: SQL、Python、EXCEL</p>
+                            <p><a>测试时间:</a> 2024年4月 - 2024年7月</p>
+                            <p><a>项目类型:</a> 小游戏</p>
+                            <p><a>项目描述:</a> 肉鸽 + 定点塔防 + 卡牌养成 + 中度商业系统</p>
+                            <p><a>主要工作:</a> 完整负责两款同题材类型在国服的CB3测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，重点评估市场盈利表现 </br> 3、对游戏中长期玩家目标相关的系统进行复盘和分析，提供数据支持； </p> 
+                            <p><a>涉及技能:</a> SQL、Python、EXCEL</p>
                         </div>
                     </div>
                     <div class="project-section">
@@ -484,11 +670,11 @@
                         </div>
                         <div class="project-text">
                             <h2>系列项目三: 《代号：DQ》</h2>
-                            <p>测试时间: 2024年3月 - 2024年4月</p>
-                            <p>项目类型: 小游戏</p>
-                            <p>项目描述: 开箱子like + 类龙珠角色IP + 重度商业系统</p>
-                            <p>主要工作: 完整负责日韩、北美及国服三地的CB2测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，对项目表现做综合评估 </br> 3、对市场表现强相关指标异动做下钻分析和归因分析 </p> 
-                            <p>涉及技能: SQL、Python、EXCEL</p>
+                            <p><a>测试时间:</a> 2024年3月 - 2024年4月</p>
+                            <p><a>项目类型: </a>小游戏</p>
+                            <p><a>项目描述:</a> 开箱子like + 类龙珠角色IP + 重度商业系统</p>
+                            <p><a>主要工作:</a> 完整负责日韩、北美及国服三地的CB2测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，对项目表现做综合评估 </br> 3、对市场表现强相关指标异动做下钻分析和归因分析 </p> 
+                            <p><a>涉及技能:</a> SQL、Python、EXCEL</p>
                         </div>
                     </div>
                 </div>
@@ -551,64 +737,153 @@
             </div>
                 
             `,
+
             业余爱好: `
                 <h1>业余爱好</h1>
-                <p>工作之余，我们还有许多有趣的爱好和活动。</p>
+                <div class="hobby-section">
+                    <div class="hobby-title">MOD 制作</div>
+                    <div class="hobby-content">
+                        <div class="hobby-images">
+                            <div class="hobby-image-row">
+                                <div class="hobby-image-container">
+                                    <img src="11to37.png" alt="mod1" class="hobby-image">
+                                    <p class="hobby-image-description">《绝区零》11号替换三月七MOD</p>
+                                </div>
+                                <div class="hobby-image-container">
+                                    <video src="狼叔改萨姆.mp4" alt="mod2" class="hobby-image" autoplay loop muted playsinline> </video>
+                                    <p class="hobby-image-description">《绝区零》莱卡恩替换萨姆MOD</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hobby-text">
+                            <p> MOD制作是<a>补全自己对游戏技术实现的知识板块中点歪的技能树(划掉）</a>，本意是想将NPC建模与自机角色建模替换制作一个UGC视频，但发现将喜欢的角色带进另一款喜欢的游戏里是一件很奇妙的事情，于是就触发了MOD技能支线</p>
+                            <p> 上手制作MOD过程中接触了很多建模的相关知识，如<a>面数、顶点结构、权重绘制、贴图制作、绑骨和渲染</a>等等，对于游戏的美术和实现有了更多的理解；</p>
+                            <p> <a>工具：</a> blender、MMT、paintnet； </p>
+                            <p> <a> Level</a>:入门级，能够制作贴图不精细、模型匹配度较高的MOD；</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hobby-section">
+                    <div class="hobby-title">AI agents</div>
+                    <div class="hobby-content">
+                        <div class="hobby-images">
+                            <div class="hobby-image-row">
+                                <div class="hobby-image-container">
+                                    <img src="AI agent.png" alt="aiagent1" class="hobby-image">
+                                    <p class="hobby-image-description">用于量产文案的多agents</p>
+                                </div>
+                                <div class="hobby-image-container">
+                                    <img src="AI agent2.png" alt="aiagent2" class="hobby-image">
+                                    <p class="hobby-image-description">自动生成游戏资讯总结的工作流</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hobby-text">
+                            <p>AI应用是我感兴趣和持续关注的领域，合理的使用AI能够让<a>高程序化、重复化的工作时间大大缩减；</a></p>
+                            <p><a>常用大模型:</a> Claude3.5;Chatgpt;Kimi;PixAI </br> 常用工作流: Coze;Dify </p>
+                            <p><a>Level:</a> 实践者 </p>                            
+                        </div>
+                    </div>
+                
+                </div>
+                            <div class="hobby-section">
+                    <div class="hobby-title">游戏UGC</div>
+                    <div class="hobby-content">
+                        <div class="hobby-images">
+                            <div class="hobby-image-row">
+                                <div class="hobby-image-container">
+                                    <img src="自媒体.png" alt="aiagent1" class="hobby-image">
+                                    <p class="hobby-image-description">游戏攻略</p>
+                                </div>
+                                <div class="hobby-image-container">
+                                   <video id="epLacanVideo" src="EP拉康.mp4" alt="mod2" class="hobby-image" loop playsinline> </video>
+                                    <button class="play-button" id="epLacanPlayButton">点击播放</button>
+                                    <p class="hobby-image-description">《崩坏：星穹铁道》匹诺康尼解说</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hobby-text">
+                            <p><a>游戏UGC内容：</a>游戏攻略、游戏测评、版本测评、剧情解读；</a></p>
+                            <p><a>运营策略：</a>在发布时点、文字量、图片风格、内容情绪等方面做数据观察，将账号定位进一步垂直化</p>
+                            <p><a>Level:</a> 运营新手 - 有2篇1-10w流量池 </p>                            
+                        </div>
+                    </div>
+                </div>
             `
+
         };
 
-        
-        
-
-        
         function loadPage(pageId) {
-            const decodedPageId = decodeURIComponent(pageId);
-            const mainContent = document.getElementById('main-content');
-            mainContent.innerHTML = `<div class="page-content">${pages[decodedPageId] || '页面不存在'}</div>`;
-            
-            // Update active class in sidebar
-            document.querySelectorAll('.sidebar a').forEach(link => {
-                link.classList.remove('active');
-            });
-            const activeLink = document.querySelector(`.sidebar a[href="#${pageId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-
-            // 如果是主页简介，初始化卡片
-            if (pageId === '主页简介') {
-                initializeCards();
-            }
-                    // Add event listeners for image hover
-                    document.querySelectorAll('.game-image-container').forEach(container => {
-                container.addEventListener('mouseover', function() {
-                    this.querySelector('.image-hover-text').style.display = 'block';
-                });
-                container.addEventListener('mouseout', function() {
-                    this.querySelector('.image-hover-text').style.display = 'none';
-                });
-            });
+        const decodedPageId = decodeURIComponent(pageId);
+        const mainContent = document.getElementById('main-content');
+        mainContent.innerHTML = `<div class="page-content">${pages[decodedPageId] || '页面不存在'}</div>`;
+        
+        // Update active class in sidebar
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.classList.remove('active');
+        });
+        const activeLink = document.querySelector(`.sidebar a[href="#${pageId}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
         }
 
-        let currentIndex = 1;
-        let cardContents = [];
-
-        function rotateCards(direction) {
-            const totalCards = cardContents.length;
-            if (direction === 'left') {
-                currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-            } else {
-                currentIndex = (currentIndex + 1) % totalCards;
-            }
-            updateCards();
+        // 如果是主页简介，初始化卡片
+        if (pageId === '主页简介') {
+            initializeCards();
         }
 
-        function updateCards() {
-            const cards = document.querySelector('.rotating-cards');
-            if (!cards) return;
+        // Add event listeners for image hover
+        document.querySelectorAll('.game-image-container').forEach(container => {
+            container.addEventListener('mouseover', function() {
+                this.querySelector('.image-hover-text').style.display = 'block';
+            });
+            container.addEventListener('mouseout', function() {
+                this.querySelector('.image-hover-text').style.display = 'none';
+            });
+        });
 
-            const totalCards = cardContents.length;
-            
+        // Add event listener for EP Lacan video play button
+        const epLacanVideo = document.getElementById('epLacanVideo');
+        const epLacanPlayButton = document.getElementById('epLacanPlayButton');
+        if (epLacanVideo && epLacanPlayButton) {
+            epLacanPlayButton.addEventListener('click', function() {
+                if (epLacanVideo.paused) {
+                    epLacanVideo.play();
+                    epLacanPlayButton.textContent = '暂停';
+                } else {
+                    epLacanVideo.pause();
+                    epLacanPlayButton.textContent = '播放';
+                }
+            });
+        }
+    }
+
+    let currentIndex = 1;
+    let cardContents = [];
+
+    function rotateCards(direction) {
+        const totalCards = cardContents.length;
+        if (direction === 'left') {
+            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        } else {
+            currentIndex = (currentIndex + 1) % totalCards;
+        }
+        updateCards();
+    }
+
+    function updateCards() {
+        const cards = document.querySelector('.rotating-cards');
+        if (!cards) return;
+
+        const totalCards = cardContents.length;
+        
+        if (window.innerWidth <= 768) {
+            // 在移动设备上显示所有卡片
+            cards.innerHTML = cardContents.join('');
+        } else {
+            // 在桌面设备上保持原有的旋转功能
             const cardIndices = Array.from({length: totalCards * 3}, (_, i) => i % totalCards);
             const visibleCards = cardIndices.slice(currentIndex, currentIndex + 3);
             
@@ -620,66 +895,30 @@
                 cards.appendChild(card);
             });
         }
-        
-        document.querySelectorAll('.game-image-container').forEach(container => {
-            container.addEventListener('mouseover', function() {
-                this.querySelector('.image-hover-text').style.display = 'block';
-            });
-            container.addEventListener('mouseout', function() {
-                this.querySelector('.image-hover-text').style.display = 'none';
-            });
-        });
+    }
 
-        function initializeCards() {
-            const cards = document.querySelector('.rotating-cards');
-            if (cards) {
-                cardContents = Array.from(cards.children).map(card => card.outerHTML);
-                updateCards();
-            }
+    function initializeCards() {
+        const cards = document.querySelector('.rotating-cards');
+        if (cards) {
+            cardContents = Array.from(cards.children).map(card => card.outerHTML);
+            updateCards();
         }
+    }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const shanheVideo = document.getElementById('shanheVideo');
-            const shanheContainer = shanheVideo.closest('.game-image-container');
-            
-            // Create play button
-            const playButton = document.createElement('button');
-            playButton.textContent = '播放';
-            playButton.className = 'play-button';
-            shanheContainer.appendChild(playButton);
+    // 初始加载
+    function initialLoad() {
+        const pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
+        loadPage(pageId);
+    }
 
-            // Handle play button click
-            playButton.addEventListener('click', function() {
-                if (shanheVideo.paused) {
-                    shanheVideo.play();
-                    playButton.textContent = '暂停';
-                } else {
-                    shanheVideo.pause();
-                    playButton.textContent = '播放';
-                }
-            });
+    // 处理导航
+    window.addEventListener('hashchange', () => {
+        const pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
+        loadPage(pageId);
+    });
 
-            // Update button text when video ends
-            shanheVideo.addEventListener('ended', function() {
-                playButton.textContent = '重播';
-            });
-        });
-
-        // 初始加载
-        function initialLoad() {
-            const pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
-            loadPage(pageId);
-        }
-
-        // 处理导航
-        window.addEventListener('hashchange', () => {
-            const pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
-            loadPage(pageId);
-        });
-
-        // 页面加载完成后初始化
-        window.addEventListener('load', initialLoad);
-        
-    </script>
+    // 页面加载完成后初始化
+    window.addEventListener('load', initialLoad);
+</script>
 </body>
 </html>
