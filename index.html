@@ -10,6 +10,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
             height: 100%;
+            overflow: hidden;
         }
         .container {
             background-image: url("背景图.jpg");
@@ -18,6 +19,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
         .navbar {
             background-color: rgba(0, 0, 0, 0.8);
@@ -47,7 +49,7 @@
             color: rgb(214, 213, 213) !important;
         }
         .icon {
-            color: rgb(32, 31, 31);
+            color: rgb(6, 6, 6);
             font-size: 20px;
             margin-left: 5px;
             cursor: pointer;
@@ -55,6 +57,7 @@
         .content {
             display: flex;
             flex: 1;
+            overflow: hidden;
         }
         .sidebar {
             background-color: rgba(0, 0, 0, 0.5);
@@ -86,7 +89,6 @@
             width: 100%;
             max-width: 1500px;
             margin: 0 auto;
-            overflow-y: auto;
         }
         .page-content h1 {
             margin-top: 30px;
@@ -95,7 +97,7 @@
             text-align: center
         }
         .page-content p {
-            color: #f8f8f8;
+            color: #000000;
         }
         .rotating-cards {
             display: flex;
@@ -140,18 +142,6 @@
             gap: 20px;
             transition: transform 0.5s ease;
         }
-        .card-front, .card-back {
-            position: absolute;
-            width: 80%;
-            height: 50px;
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
         .card-back {
             transform: rotateY(180deg);
         }
@@ -177,8 +167,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.3);
-            color: #862424;
+            background-color: rgba(59, 59, 59, 0.3);
+            color: #ffffff;
             border: none;
             padding: 15px;
             cursor: pointer;
@@ -238,42 +228,128 @@
         }
 
         .project-container {
-            width: 100%;
-            max-height: calc(100vh - 100px);
+            position: relative;
+            width: 80%;
+            margin: 0 auto; /* 添加这一行来居中 */
         }
 
         .project-section {
             display: flex;
+            flex-direction: column; /* 改回垂直排列 */
+            align-items: flex-start; /* 左对齐 */
             width: 100%;
             padding: 20px;
             box-sizing: border-box;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
+
         .project-image {
-            flex: 0 0 30%;
-            padding-right: 20px;
-            margin-left: 200px; /* Offset the negative margin */
+            margin-bottom: 20px; /* 添加右边距，与文字保持一定距离 */
+            align-self: flex-start;
         }
 
         .project-image img {
-            width: 100%;
-            height: auto;
+            width: 70px;
+            height: 70px;
             border-radius: 10px;
         }
 
         .project-text {
-            flex: 0 0 70%;
-        }
+        flex: 1;
+        width: 80%; /* 将宽度从 50% 增加到 80% */
+        background-color: rgba(190, 190, 190, 0.2);
+        padding: 20px; /* 添加内边距 */
+        border-radius: 10px; /* 添加圆角 */
+    }
+
 
         .project-text h2 {
             margin-top: 0;
-            color: #333;
+            font-size: 20pt;
+            font-weight: bold;
         }
 
         .project-text p {
-            color: #666;
+            color: #000000;
+            font-size: 15pt;
             margin: 10px 0;
+            line-height: 2;
+        }
+
+        #main-content {
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+
+        .game-analysis {
+            width: 100%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .game-analysis h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-analysis-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .game-image-container {
+            position: relative;
+            width: 45%;
+        }
+
+        .game-image {
+            width: 100%;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        .image-hover-text {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: rgba(185, 185, 185, 0.3);
+            text-align: center;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+            padding: 0px;
+            border-radius: 0 0 5px 5px;
+            line-height: 0.7;
+            display: none;
+            z-index: 10;
+            font-size:15px;
+        }
+
+        .game-image-container:hover .image-hover-text {
+            display: block;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .game-image-container:hover .play-button {
+            display: block;
         }
     </style>
 </head>
@@ -375,46 +451,105 @@
                 <div class="project-container">
                     <div class="project-section">
                         <div class="project-image">
-                            <img src="project1.jpg" alt="项目1图片">
+                            <img src="ymdlhll.jpg" alt="项目1图片1">
+                            <img src="imf3mr.jpg" alt="项目1图片3">
+                            <img src="jmybt.png" alt="项目1图片2">
                         </div>
                         <div class="project-text">
-                            <h2>项目1: 《代号：DQ》</h2>
-                            <p>开发时间: 2022年1月 - 2022年6月</p>
-                            <p>项目描述: 设计并实现了一个智能家居控制系统，集成了温度调节、照明控制和安全监控等功能。</p>
-                            <p>技术栈: React, Node.js, MongoDB, MQTT</p>
-                            <p>成果: 系统成功部署在100+家庭，用户满意度达95%</p>
+                             <h2>系列项目一: 《代号：HLL》</h2>
+                            <p>测试时间: 2024年7月 - 2024年8月</p>
+                            <p>项目类型: 小游戏</p>
+                            <p>项目描述: 大地图探索 + 卡牌养成 + 重度商业系统</p>
+                            <p>主要工作: 完整负责三款同题材类型在国服的CA1和CB1测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，重点评估市场可行性和各系统可玩性 </br> 3、对游戏进程前期关键行为指标进行分析，用数据支撑游戏核心层调优 </p> 
+                            <p>涉及技能: SQL、Python、EXCEL</p>
                         </div>
                     </div>
                     <div class="project-section">
                         <div class="project-image">
-                            <img src="project2.jpg" alt="项目2图片">
+                            <img src="ymdltf.png" alt="项目2图片1">
+                            <img src="bmsgxj.png" alt="项目2图片2">
                         </div>
                         <div class="project-text">
-                            <h2>项目2: 移动健康应用</h2>
-                            <p>开发时间: 2021年7月 - 2021年12月</p>
-                            <p>项目描述: 开发了一款移动健康应用，帮助用户跟踪日常运动和饮食习惯。</p>
-                            <p>技术栈: Flutter, Firebase, Google Fit API</p>
-                            <p>成果: 应用在App Store和Google Play上线，下载量超过50万</p>
+                           <h2>系列项目二: 《代号：TowerDefence》</h2>
+                            <p>测试时间: 2024年4月 - 2024年7月</p>
+                            <p>项目类型: 小游戏</p>
+                            <p>项目描述: 肉鸽 + 定点塔防 + 卡牌养成 + 中度商业系统</p>
+                            <p>主要工作: 完整负责两款同题材类型在国服的CB3测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，重点评估市场盈利表现 </br> 3、对游戏中长期玩家目标相关的系统进行复盘和分析，提供数据支持； </p> 
+                            <p>涉及技能: SQL、Python、EXCEL</p>
                         </div>
                     </div>
                     <div class="project-section">
                         <div class="project-image">
-                            <img src="project3.jpg" alt="项目3图片">
+                            <img src="gmyzcp.png" alt="项目3图片">
                         </div>
                         <div class="project-text">
-                            <h2>项目3: 企业资源管理系统</h2>
-                            <p>开发时间: 2020年9月 - 2021年3月</p>
-                            <p>项目描述: 为中型制造企业开发了一套定制的ERP系统，整合了库存管理、生产计划和财务报告等模块。</p>
-                            <p>技术栈: Java Spring Boot, Angular, PostgreSQL</p>
-                            <p>成果: 系统上线后，客户的运营效率提升了30%，库存成本降低15%</p>
+                            <h2>系列项目三: 《代号：DQ》</h2>
+                            <p>测试时间: 2024年3月 - 2024年4月</p>
+                            <p>项目类型: 小游戏</p>
+                            <p>项目描述: 开箱子like + 类龙珠角色IP + 重度商业系统</p>
+                            <p>主要工作: 完整负责日韩、北美及国服三地的CB2测试数据分析工作；</br>1、全面埋点+后台验收 </br> 2、出具测试期复盘报告，对项目表现做综合评估 </br> 3、对市场表现强相关指标异动做下钻分析和归因分析 </p> 
+                            <p>涉及技能: SQL、Python、EXCEL</p>
                         </div>
                     </div>
                 </div>
             `,
-
             游戏拆解: `
                 <h1>游戏拆解</h1>
-                <p>在这里，我们深入分析各种游戏的机制和设计。</p>
+                <div class="game-analysis">
+                    <h2>手游</h2>
+                    <div class="game-analysis-content">
+                        <div class="game-image-container left">
+                            <a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/wiki/OAgNwj8gCinuQ2kmQBWcWBjWnte', '_blank', 'width=800,height=600');"> <img src="绝区零.png" alt="游戏图片1" class="game-image" > </a>
+                            <div class="image-hover-text">
+                                <p> 《绝区零》：ARPG + 二次元都市题材</p>
+                                <p> 拆解分析：<a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/wiki/OAgNwj8gCinuQ2kmQBWcWBjWnte', '_blank', 'width=800,height=600');">点击打开</a></p>
+                                </div>
+                        </div>
+                        <div class="game-image-container right">
+                            <a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/docx/FNPydBB6Eop9FvxIakwcqNvgnkg', '_blank', 'width=800,height=600');"> <img src="allgodsknow.webp" alt="游戏图片2" class="game-image"> </a>
+                            <div class="image-hover-text">
+                                <p> 《诸神终应知晓》：ARPG</p>
+                                <p> 拆解分析：<a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/docx/FNPydBB6Eop9FvxIakwcqNvgnkg', '_blank', 'width=800,height=600');">点击打开</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-analysis">
+                    <h2>小游戏</h2>
+                    <div class="game-analysis-content">
+                        <div class="game-image-container left">
+                            <a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/docx/LL7Adoqz5oQV59xmkVdcxzoYnDe', '_blank', 'width=800,height=600');"> <img src="fire.webp" alt="小游戏图片1" class="game-image"> </a>
+                            <div class="image-hover-text">
+                                <p> 《向僵尸开炮》：肉鸽塔防小游戏</p>
+                                <p> 拆解分析：<a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/docx/LL7Adoqz5oQV59xmkVdcxzoYnDe', '_blank', 'width=800,height=600');">点击打开</a></p>
+                            </div>
+                        </div>
+                        <div class="game-image-container right">
+                            <a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/wiki/JNnuwG1ISi1p8Mk95SgcQylfnsm?from=from_copylink', '_blank', 'width=800,height=600');"> <img src="screwjam.png" alt="小游戏图片2" class="game-image"> </a>
+                            <div class="image-hover-text">
+                                <p> 《screw jam》：策略三消休闲小游戏</p>
+                                <p> 拆解分析：<a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/wiki/JNnuwG1ISi1p8Mk95SgcQylfnsm?from=from_copylink', '_blank', 'width=800,height=600');">点击打开</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-analysis">
+                <h2>单机游戏</h2>
+                <div class="game-analysis-content">
+                    <div class="game-image-container left">
+                    <a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/docx/EAFtdBh0XosxOuxd8KZc1f3znPc?from=from_copylink', '_blank', 'width=800,height=600');">
+                        <video class="game-image" poster="murders.png" preload="none" id="shanheVideo" muted>
+                            <source src="movie480_vp9.webm" type="webm">
+                             Your browser does not support the video tag.
+                        </video>
+                    </a>
+                        <div class="image-hover-text">
+                            <p> 《山河旅探》：2D文字解谜</p>
+                            <p> 拆解分析：<a href="javascript:void(0);" onclick="window.open('https://yeixeatxl6.feishu.cn/docx/EAFtdBh0XosxOuxd8KZc1f3znPc?from=from_copylink', '_blank', 'width=800,height=600');">点击打开</a></p>
+                        </div>
+                    </div>
+            </div>
+                
             `,
             业余爱好: `
                 <h1>业余爱好</h1>
@@ -444,6 +579,15 @@
             if (pageId === '主页简介') {
                 initializeCards();
             }
+                    // Add event listeners for image hover
+                    document.querySelectorAll('.game-image-container').forEach(container => {
+                container.addEventListener('mouseover', function() {
+                    this.querySelector('.image-hover-text').style.display = 'block';
+                });
+                container.addEventListener('mouseout', function() {
+                    this.querySelector('.image-hover-text').style.display = 'none';
+                });
+            });
         }
 
         let currentIndex = 1;
@@ -476,6 +620,15 @@
                 cards.appendChild(card);
             });
         }
+        
+        document.querySelectorAll('.game-image-container').forEach(container => {
+            container.addEventListener('mouseover', function() {
+                this.querySelector('.image-hover-text').style.display = 'block';
+            });
+            container.addEventListener('mouseout', function() {
+                this.querySelector('.image-hover-text').style.display = 'none';
+            });
+        });
 
         function initializeCards() {
             const cards = document.querySelector('.rotating-cards');
@@ -484,6 +637,33 @@
                 updateCards();
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const shanheVideo = document.getElementById('shanheVideo');
+            const shanheContainer = shanheVideo.closest('.game-image-container');
+            
+            // Create play button
+            const playButton = document.createElement('button');
+            playButton.textContent = '播放';
+            playButton.className = 'play-button';
+            shanheContainer.appendChild(playButton);
+
+            // Handle play button click
+            playButton.addEventListener('click', function() {
+                if (shanheVideo.paused) {
+                    shanheVideo.play();
+                    playButton.textContent = '暂停';
+                } else {
+                    shanheVideo.pause();
+                    playButton.textContent = '播放';
+                }
+            });
+
+            // Update button text when video ends
+            shanheVideo.addEventListener('ended', function() {
+                playButton.textContent = '重播';
+            });
+        });
 
         // 初始加载
         function initialLoad() {
@@ -499,6 +679,7 @@
 
         // 页面加载完成后初始化
         window.addEventListener('load', initialLoad);
+        
     </script>
 </body>
 </html>
