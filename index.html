@@ -413,10 +413,17 @@
             width: 100%;
             height:80%;
         }
+        /* 响应式设计 */
         @media (max-width: 768px) {
         .rotating-cards {
             flex-direction: column;
             align-items: center;
+        }
+        .card {
+            margin: 10px 0;
+        }
+        .rotate-btn {
+            display: none;
         }
         .navbar {
             flex-direction: column;
@@ -549,6 +556,12 @@
             width: 100%;
             height:auto;
         }
+        .navbar a[href="#主页简介"] {
+                display: none;
+            }
+            .sidebar a[href="#主页简介"] {
+                display: none;
+            }
     }
     </style>
 </head>
@@ -598,7 +611,7 @@
                                 <div class="card-back">
                                     <img src="微信图片_20240730123147.png" alt="Back Image" class="card-logo">
                                     <div class="card-content">
-                                        <div class="card-title"></div>
+                                        <div class="card-title"></div>a
                                         <div class="card-footer"> AI之友 </br>  弱点击破 </br>  静心执行 </br> 话不多人不狠 </br> </div>
                                     </div>
                                 </div>
@@ -794,7 +807,8 @@
                         </div>
                         <div class="hobby-text">
                             <p>AI应用是我感兴趣和持续关注的领域，合理的使用AI能够让<a>高程序化、重复化的工作时间大大缩减；</a></p>
-                            <p><a>常用大模型:</a> Claude3.5;Chatgpt;Kimi;PixAI </br> 常用工作流: Coze;Dify </p>
+                            <p><a>常用大模型:</a> Claude3.5;Chatgpt;Kimi;PixAI </p>
+                            <p><a>常用工作流:</a> Coze;Dify </p>
                             <p><a>Level:</a> 实践者 </p>                            
                         </div>
                     </div>
@@ -810,8 +824,8 @@
                                     <p class="hobby-image-description">游戏攻略</p>
                                 </div>
                                 <div class="hobby-image-container">
-                                   <iframe src="http://player.bilibili.com/player.html?bvid=BV1fC411s7MM&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-                                    <p class="hobby-image-description">《崩坏：星穹铁道》匹诺康尼解说</p>
+                                    <a href="javascript:void(0);" onclick="window.open('https://www.bilibili.com/video/BV1fC411s7MM/', '_blank', 'width=800,height=600');"> <img src="拉康.png" alt="aiagent1" class="hobby-image"> </a>
+                                    <p class="hobby-image-description"><a href="javascript:void(0);" onclick="window.open('https://www.bilibili.com/video/BV1fC411s7MM/', '_blank', 'width=800,height=600');">《崩坏：星穹铁道》匹诺康尼解说</a></p>
                                 </div>
                             </div>
                         </div>
@@ -823,13 +837,20 @@
                     </div>
                 </div>
             `
-
         };
 
         function loadPage(pageId) {
-        const decodedPageId = decodeURIComponent(pageId);
-        const mainContent = document.getElementById('main-content');
-        mainContent.innerHTML = `<div class="page-content">${pages[decodedPageId] || '页面不存在'}</div>`;
+            const decodedPageId = decodeURIComponent(pageId);
+            const mainContent = document.getElementById('main-content');
+            
+            // Check if it's a mobile device and the pageId is '主页简介'
+            if (window.innerWidth <= 768 && decodedPageId === '主页简介') {
+                // Load the next available page instead
+                const nextPageId = Object.keys(pages).find(key => key !== '主页简介');
+                mainContent.innerHTML = `<div class="page-content">${pages[nextPageId] || '页面不存在'}</div>`;
+            } else {
+                mainContent.innerHTML = `<div class="page-content">${pages[decodedPageId] || '页面不存在'}</div>`;
+            }
         
         // Update active class in sidebar
         document.querySelectorAll('.sidebar a').forEach(link => {
@@ -887,6 +908,8 @@
     function flipCard(card) {
         card.classList.toggle('flipped');
     }
+
+
     function updateCards() {
         const cards = document.querySelector('.rotating-cards');
         if (!cards) return;
@@ -918,12 +941,18 @@
             updateCards();
         }
     }
-
-    // 初始加载
-    function initialLoad() {
-        const pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
-        loadPage(pageId);
-    }
+        // 初始加载
+        function initialLoad() {
+            let pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
+            
+            // If it's a mobile device and the initial page is '主页简介', change it to the next available page
+            if (window.innerWidth <= 768 && pageId === '主页简介') {
+                pageId = Object.keys(pages).find(key => key !== '主页简介');
+                window.location.hash = `#${pageId}`;
+            }
+            
+            loadPage(pageId);
+        }
 
     // 处理导航
     window.addEventListener('hashchange', () => {
