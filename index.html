@@ -984,8 +984,8 @@
             let pageId = decodeURIComponent(window.location.hash.slice(1)) || '主页简介';
             
             // If it's a mobile device and the initial page is '主页简介', change it to the next available page
-            if (window.innerWidth <= 768 && pageId === '项目经历') {
-                pageId = Object.keys(pages).find(key => key !== '项目经历');
+            if (window.innerWidth <= 768 && pageId === '主页简介') {
+                pageId = Object.keys(pages).find(key => key !== '主页简介');
                 window.location.hash = `#${pageId}`;
             }
             
